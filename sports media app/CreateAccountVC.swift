@@ -13,17 +13,15 @@ class CreateAccountVC: UIViewController {
     
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var emailTF: UITextField!
-    @IBOutlet weak var userNameLab: UILabel!
     @IBOutlet weak var userNameTF: UITextField!
-    @IBOutlet weak var passwordLab: UILabel!
     @IBOutlet weak var passwordTF: UITextField!
-    @IBOutlet weak var confirmPasswordLab: UILabel!
-    @IBOutlet weak var confirmPasswordTF: UITextField!
+    @IBOutlet weak var favTeamTF: UITextField!
+    @IBOutlet weak var faveSportTF: UITextField!
     @IBAction func signUpPressed(_ sender: Any) {
-        if let email = emailTF.text, let password = passwordTF.text, let username = userNameTF.text {
+        if let email = emailTF.text, let password = passwordTF.text, let username = userNameTF.text, let favTeam = favTeamTF.text, let favSport = faveSportTF.text, let picture = profilePic {
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                 if error == nil {
-                    Database.database().reference().child("Users").child((user?.user.uid)!).setValue(username)
+                    Database.database().reference().child("Users").child((user?.user.uid)!).setValue(["username": username, "favoriteSport": favSport, "favoriteTeam": favTeam, "profilePicture": picture])
                 }
                 else {
                     print(error as Any)

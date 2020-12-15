@@ -10,6 +10,9 @@
 		522A67EBF0B63BA28349D012 /* Pods_sports_media_app_sports_media_appUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 811AC355A77E395F1DB9B026 /* Pods_sports_media_app_sports_media_appUITests.framework */; };
 		9A2E8F8E2588814600E3596E /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E8F8D2588814600E3596E /* CreateAccountVC.swift */; };
 		9A2E8F932588A55800E3596E /* AccountDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E8F922588A55800E3596E /* AccountDetailViewController.swift */; };
+		9A2E8F982588B80400E3596E /* CreatePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E8F972588B80400E3596E /* CreatePostVC.swift */; };
+		9A2E8F9D2588BFC500E3596E /* AllPostsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E8F9C2588BFC500E3596E /* AllPostsTableVC.swift */; };
+		9A2E8FA22588C6C300E3596E /* AllPostsCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E8FA12588C6C300E3596E /* AllPostsCellTableViewCell.swift */; };
 		9A698E492588615500271352 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A698E482588615500271352 /* GoogleService-Info.plist */; };
 		9A9E69E5257465D500D2C781 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E69E4257465D500D2C781 /* AppDelegate.swift */; };
 		9A9E69E7257465D500D2C781 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E69E6257465D500D2C781 /* SceneDelegate.swift */; };
@@ -46,6 +49,9 @@
 		8EF99714F321BE7AC3C40021 /* Pods-sports media app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sports media app.release.xcconfig"; path = "Target Support Files/Pods-sports media app/Pods-sports media app.release.xcconfig"; sourceTree = "<group>"; };
 		9A2E8F8D2588814600E3596E /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		9A2E8F922588A55800E3596E /* AccountDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailViewController.swift; sourceTree = "<group>"; };
+		9A2E8F972588B80400E3596E /* CreatePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostVC.swift; sourceTree = "<group>"; };
+		9A2E8F9C2588BFC500E3596E /* AllPostsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsTableVC.swift; sourceTree = "<group>"; };
+		9A2E8FA12588C6C300E3596E /* AllPostsCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsCellTableViewCell.swift; sourceTree = "<group>"; };
 		9A698E482588615500271352 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A9E69E1257465D500D2C781 /* sports media app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sports media app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9E69E4257465D500D2C781 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,12 +142,15 @@
 				9A9E69E4257465D500D2C781 /* AppDelegate.swift */,
 				9A9E69E6257465D500D2C781 /* SceneDelegate.swift */,
 				9A9E69E8257465D500D2C781 /* LogInVC.swift */,
-				9A9E69EA257465D500D2C781 /* Main.storyboard */,
 				9A9E69ED257465D600D2C781 /* Assets.xcassets */,
 				9A9E69EF257465D600D2C781 /* LaunchScreen.storyboard */,
 				9A9E69F2257465D600D2C781 /* Info.plist */,
+				9A9E69EA257465D500D2C781 /* Main.storyboard */,
 				9A2E8F8D2588814600E3596E /* CreateAccountVC.swift */,
 				9A2E8F922588A55800E3596E /* AccountDetailViewController.swift */,
+				9A2E8F972588B80400E3596E /* CreatePostVC.swift */,
+				9A2E8F9C2588BFC500E3596E /* AllPostsTableVC.swift */,
+				9A2E8FA12588C6C300E3596E /* AllPostsCellTableViewCell.swift */,
 			);
 			path = "sports media app";
 			sourceTree = "<group>";
@@ -417,10 +426,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A9E69E9257465D500D2C781 /* LogInVC.swift in Sources */,
+				9A2E8F9D2588BFC500E3596E /* AllPostsTableVC.swift in Sources */,
 				9A2E8F932588A55800E3596E /* AccountDetailViewController.swift in Sources */,
+				9A2E8F982588B80400E3596E /* CreatePostVC.swift in Sources */,
 				9A9E69E5257465D500D2C781 /* AppDelegate.swift in Sources */,
 				9A2E8F8E2588814600E3596E /* CreateAccountVC.swift in Sources */,
 				9A9E69E7257465D500D2C781 /* SceneDelegate.swift in Sources */,
+				9A2E8FA22588C6C300E3596E /* AllPostsCellTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

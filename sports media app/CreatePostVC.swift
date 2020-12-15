@@ -1,18 +1,17 @@
 //
-//  AccountDetailViewController.swift
+//  CreatePostVC.swift
 //  sports media app
 //
 //  Created by Mercado, Trenton Laurent on 12/15/20.
 //
 
 import UIKit
+import Firebase
+class CreatePostVC: UIViewController {
 
-class AccountDetailViewController: UIViewController {
-
-    @IBOutlet weak var profilePic: UIImageView!
-    @IBOutlet weak var favoriteSportLab: UILabel!
-    @IBOutlet weak var favoriteTeamLab: UILabel!
-    @IBOutlet weak var usernameLab: UILabel!
+    @IBOutlet weak var topicTF: UITextField!
+    @IBOutlet weak var postTF: UITextField!
+    let date = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .medium)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +19,12 @@ class AccountDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func plusPressed(_ sender: UIBarButtonItem) {
+        if let post = postTF.text, let topic = topicTF.text {
+            Database.database().reference().child("Feed").child(Auth.auth().currentUser!.uid).childByAutoId().setValue(["post": post, "date" :date, "topic": topic])
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
