@@ -13,6 +13,7 @@
 		9A2E8F982588B80400E3596E /* CreatePostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E8F972588B80400E3596E /* CreatePostVC.swift */; };
 		9A2E8F9D2588BFC500E3596E /* AllPostsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E8F9C2588BFC500E3596E /* AllPostsTableVC.swift */; };
 		9A2E8FA22588C6C300E3596E /* AllPostsCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E8FA12588C6C300E3596E /* AllPostsCellTableViewCell.swift */; };
+		9A2E8FA72588DDE500E3596E /* myPostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2E8FA62588DDE500E3596E /* myPostsTableViewCell.swift */; };
 		9A698E492588615500271352 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9A698E482588615500271352 /* GoogleService-Info.plist */; };
 		9A9E69E5257465D500D2C781 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E69E4257465D500D2C781 /* AppDelegate.swift */; };
 		9A9E69E7257465D500D2C781 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A9E69E6257465D500D2C781 /* SceneDelegate.swift */; };
@@ -52,6 +53,7 @@
 		9A2E8F972588B80400E3596E /* CreatePostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostVC.swift; sourceTree = "<group>"; };
 		9A2E8F9C2588BFC500E3596E /* AllPostsTableVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsTableVC.swift; sourceTree = "<group>"; };
 		9A2E8FA12588C6C300E3596E /* AllPostsCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPostsCellTableViewCell.swift; sourceTree = "<group>"; };
+		9A2E8FA62588DDE500E3596E /* myPostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myPostsTableViewCell.swift; sourceTree = "<group>"; };
 		9A698E482588615500271352 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9A9E69E1257465D500D2C781 /* sports media app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sports media app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A9E69E4257465D500D2C781 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				9A2E8F972588B80400E3596E /* CreatePostVC.swift */,
 				9A2E8F9C2588BFC500E3596E /* AllPostsTableVC.swift */,
 				9A2E8FA12588C6C300E3596E /* AllPostsCellTableViewCell.swift */,
+				9A2E8FA62588DDE500E3596E /* myPostsTableViewCell.swift */,
 			);
 			path = "sports media app";
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				9A9E69E9257465D500D2C781 /* LogInVC.swift in Sources */,
 				9A2E8F9D2588BFC500E3596E /* AllPostsTableVC.swift in Sources */,
 				9A2E8F932588A55800E3596E /* AccountDetailViewController.swift in Sources */,
+				9A2E8FA72588DDE500E3596E /* myPostsTableViewCell.swift in Sources */,
 				9A2E8F982588B80400E3596E /* CreatePostVC.swift in Sources */,
 				9A9E69E5257465D500D2C781 /* AppDelegate.swift in Sources */,
 				9A2E8F8E2588814600E3596E /* CreateAccountVC.swift in Sources */,

@@ -12,10 +12,10 @@ class LogInVC: UIViewController {
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
-    @IBAction func createAccountPressed(_ sender: UIButton) {
-        let creatAccountPage = (self.storyboard?.instantiateViewController(identifier: "CreateAccountVC"))!
-        self.present(creatAccountPage, animated: true, completion: nil)
-    }
+    //@IBAction func createAccountPressed(_ sender: UIButton) {
+    //    let createAccountPage = (self.storyboard?.instantiateViewController(identifier: "CreateAccountVC"))!
+      //  self.present(createAccountPage, animated: true, completion: nil)
+   // }
     
     @IBAction func logInPressed(_ sender: UIButton) {
         if let email = emailTF.text, let password = passwordTF.text {
@@ -34,9 +34,8 @@ class LogInVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {}
         
-    }
 
 
 }

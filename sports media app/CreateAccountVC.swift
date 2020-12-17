@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class CreateAccountVC: UIViewController {
+class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     
     @IBOutlet weak var profilePic: UIImageView!
@@ -27,6 +27,25 @@ class CreateAccountVC: UIViewController {
                     print(error as Any)
                 }
             }
+        }
+    }
+    @IBAction func setProfilePicPressed(_ sender: UIButton) {
+        let imagePicker = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePicker.sourceType = .camera
+        }
+        else {
+            imagePicker.sourceType = .photoLibrary
+        }
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+        
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        if let image = info[.originalImage] as? UIImage {
+            profilePic.image = image
         }
     }
     
