@@ -13,7 +13,6 @@ class AccountDetailViewController: UIViewController {
     @IBOutlet weak var favoriteSportLab: UILabel!
     @IBOutlet weak var favoriteTeamLab: UILabel!
     @IBOutlet weak var usernameLab: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

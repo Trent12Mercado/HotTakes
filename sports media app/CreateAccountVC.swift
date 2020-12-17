@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     
     @IBOutlet weak var profilePic: UIImageView!
@@ -17,14 +17,17 @@ class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var favTeamTF: UITextField!
     @IBOutlet weak var faveSportTF: UITextField!
-    @IBAction func signUpPressed(_ sender: Any) {
-        if let email = emailTF.text, let password = passwordTF.text, let username = userNameTF.text, let favTeam = favTeamTF.text, let favSport = faveSportTF.text, let picture = profilePic {
+    @IBAction func signUpPressed(_ sender: UIButton) {
+        if let email = emailTF.text, let password = passwordTF.text, let username = userNameTF.text, let favTeam = favTeamTF.text, let favSport = faveSportTF.text, let picture = profilePic.image {
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                 if error == nil {
                     Database.database().reference().child("Users").child((user?.user.uid)!).setValue(["username": username, "favoriteSport": favSport, "favoriteTeam": favTeam, "profilePicture": picture])
                 }
                 else {
                     print(error as Any)
+                    let alert = UIAlertController(title:"Invalid input", message: "Fill in all of the required areas please", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
                 }
             }
         }

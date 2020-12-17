@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+
 class LogInVC: UIViewController {
 
     @IBOutlet weak var emailTF: UITextField!
