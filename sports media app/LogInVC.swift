@@ -22,7 +22,7 @@ class LogInVC: UIViewController {
         if let email = emailTF.text, let password = passwordTF.text {
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                 if error == nil {
-                    
+                    let nextView = self.instantiateViewController(
                 }
                 else {
                     print(error as Any)

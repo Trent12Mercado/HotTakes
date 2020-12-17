@@ -19,17 +19,25 @@ class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet weak var faveSportTF: UITextField!
     @IBAction func signUpPressed(_ sender: UIButton) {
         if let email = emailTF.text, let password = passwordTF.text, let username = userNameTF.text, let favTeam = favTeamTF.text, let favSport = faveSportTF.text, let picture = profilePic.image {
+            print("we got here baby")
             Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
                 if error == nil {
-                    Database.database().reference().child("Users").child((user?.user.uid)!).setValue(["username": username, "favoriteSport": favSport, "favoriteTeam": favTeam, "profilePicture": picture])
+                    print("now we are here")
+                    Database.database().reference().child("Users").child((user?.user.uid)!).setValue(["username": username, "favoriteSport": favSport, "favoriteTeam": favTeam])
                 }
                 else {
+                    print("we got an error")
                     print(error as Any)
                     let alert = UIAlertController(title:"Invalid input", message: "Fill in all of the required areas please", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true)
                 }
             }
+        }
+        else {
+            let alert = UIAlertController(title:"Invalid input", message: "Fill in all of the required areas please", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
         }
     }
     @IBAction func setProfilePicPressed(_ sender: UIButton) {
