@@ -9,7 +9,6 @@ import UIKit
 import Firebase
 
 class LogInVC: UIViewController {
-
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var passwordTF: UITextField!
     
@@ -22,12 +21,20 @@ class LogInVC: UIViewController {
         if let email = emailTF.text, let password = passwordTF.text {
             Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
                 if error == nil {
-                    let nextView = self.instantiateViewController(
+                    self.performSegue(withIdentifier: "profileVC", sender: (Any).self)
                 }
                 else {
                     print(error as Any)
+                    let alert = UIAlertController(title:"Invalid input", message: "Fill in all of the required areas please", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
                 }
             }
+        }
+        else {
+            let alert = UIAlertController(title:"Invalid input", message: "Fill in all of the required areas please", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
         }
     }
     override func viewDidLoad() {
@@ -35,7 +42,18 @@ class LogInVC: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {}
+    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //    if let identifier = segue.identifier {
+     //       if identifier == "showProfile" {
+    //            if let currUserID = Auth.auth().currentUser
+    //            }
+    //            else {
+   //                 print("something went wrong")
+   //                 return
+  //              }
+ //           }
+//        }
+//    }
         
 
 
