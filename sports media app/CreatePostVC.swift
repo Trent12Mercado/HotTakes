@@ -21,7 +21,7 @@ class CreatePostVC: UIViewController {
     
     @IBAction func plusPressed(_ sender: UIBarButtonItem) {
         if let post = postTF.text, let topic = topicTF.text {
-            Database.database().reference().child("Feed").child(Auth.auth().currentUser!.uid).childByAutoId().setValue(["post": post, "date" :date, "topic": topic])
+            Database.database().reference().child("Feed").child(Auth.auth().currentUser!.uid).childByAutoId().setValue(["post": post, "date" :date, "topic": topic, "uid": Auth.auth().currentUser!.uid])
         }
     }
     

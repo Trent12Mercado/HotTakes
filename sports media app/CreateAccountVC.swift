@@ -64,6 +64,8 @@ class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavi
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(CreateAccountVC.dismissKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
     
 
@@ -76,5 +78,7 @@ class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavi
         // Pass the selected object to the new view controller.
     }
     */
-
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

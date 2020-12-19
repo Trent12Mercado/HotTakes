@@ -10,50 +10,38 @@ import Firebase
 
 class AllPostsTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var posts = [User]()
     @IBOutlet weak var allPostsTV: UITableView!
-    var dates = [String]()
-    var posts = [String]()
-    var topics = [String]()
-    var profilePics = [UIImageView]()
-    var usernames = [String]()
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        if section == 0 {
+            return posts.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllPostsCell")! as! AllPostsCellTableViewCell
-        cell.profilePic = profilePics[indexPath.row]
-        cell.postContent.text = posts[indexPath.row]
-        cell.dateLab.text = dates[indexPath.row]
-        cell.usernameLab.text = usernames[indexPath.row]
-        cell.topicLab.text = topics[indexPath.row]
+        let row  = indexPath.row
+        cell.postContent.text = posts[row].post
+        cell.dateLab.text = posts[row].date
+        cell.usernameLab.text = posts[row].username
+        cell.topicLab.text = posts[row].topic
         
         return cell
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        Database.database().reference().child("Feed").observe(.value) { (DataSnapshot) in
+        let ref = Database.database().reference()
+        ref.child("Feed").observe(.value) { (DataSnapshot) in
             if let data1 = DataSnapshot.value as? [String:Any]{
                 for datas in data1.values{
                     let moreData = datas as? [String:Any]
                     for data2 in moreData!.values {
                         let data3 = data2 as? [String:Any]
-                        self.dates.append(data3!["date"] as! String)
-                        self.posts.append(data3!["post"] as! String)
-                        self.topics.append(data3!["topics"] as! String)
-                    }
-                }
-            }
-        }
-        Database.database().reference().child("Users").observe(.value) { (DataSnapshot) in
-            if let data4 = DataSnapshot.value as? [String:Any]{
-                for data5 in data4.values{
-                    let data6 = data5 as? [String:Any]
-                    for data8 in data6!.values {
-                        let data9 = data8 as? [String:Any]
-                        self.profilePics.append(data9!["profilePictures"] as! UIImageView)
-                        self.usernames.append(data9!["username"] as! String)
+                        
+                        
                     }
                 }
             }

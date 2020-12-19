@@ -12,14 +12,17 @@ class User {
     var username: String
     var favSport: String
     var favTeam: String
-    var profilePic: String
-    
-    init(username: String, favSport: String, favTeam: String, profilePic: String) {
+    var profilePic: String? = nil
+    var post: String? = nil
+    var topic: String? = nil
+    var date: String? = nil
+    init(username: String, favSport: String, favTeam: String /*profilePic: String*/) {
         self.username = username
         self.favSport = favSport
         self.favTeam = favTeam
-        self.profilePic = profilePic
+        //self.profilePic = profilePic
     }
+    
     
     
     

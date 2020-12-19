@@ -19,18 +19,15 @@ class AccountDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if let currUser = Auth.auth().currentUser {
-            let ref = Database.database().reference()
-            ref.child(currUid!).observe(.value) { [self] (DataSnapshot) in
-                let data = DataSnapshot.value as? [String: Any]
-                if let favTeam = data?["favoriteTeam"], let favSport = data?["favoriteSport"], let username = data?["username"] {
-                    self.favoriteSportLab.text = favSport as? String
-                    favoriteTeamLab.text = favTeam as? String
-                    usernameLab.text = username as? String
-                }
-            }
-        }
+        Database.database().reference().child("Users").child(currUid!).observeSingleEvent(of: .value, with: { (DataSnapshot) in
+            let value = DataSnapshot.value as? NSDictionary
+            self.favoriteTeamLab.text = value?["favoriteTeam"] as? String
+            self.favoriteSportLab.text = value?["favoriteSport"] as? String
+            self.usernameLab.text = value?["username"] as? String
+        })
+        { (Error) in print(Error.localizedDescription)}
     }
+   
     
     
     /*
