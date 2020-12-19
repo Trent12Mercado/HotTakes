@@ -24,5 +24,11 @@ class myPostsTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    func update(with user: User) {
+        topicLab.text = user.topic
+        postContent.text = user.post
+        dateLab.text = user.date
+        usernameLab.text = user.username
+    }
 }

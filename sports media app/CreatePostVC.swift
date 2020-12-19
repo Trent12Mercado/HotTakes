@@ -10,8 +10,8 @@ import Firebase
 class CreatePostVC: UIViewController {
 
     @IBOutlet weak var topicTF: UITextField!
-    @IBOutlet weak var postTF: UITextField!
-    let date = DateFormatter.localizedString(from: Date(), dateStyle: .medium, timeStyle: .medium)
+    @IBOutlet weak var postTF: UITextView!
+    let date = DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .short)
     
     override func viewDidLoad() {
         super.viewDidLoad()

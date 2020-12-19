@@ -138,7 +138,7 @@
                                         <rect key="frame" x="0.0" y="577.5" width="314" height="91.5"/>
                                         <state key="normal" title="Go To Feed"/>
                                         <connections>
-                                            <segue destination="vgw-gl-fgK" kind="show" id="aXf-MV-DFE"/>
+                                            <segue destination="vgw-gl-fgK" kind="show" id="LIs-Ma-SQR"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -173,7 +173,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y8T-gO-HjH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5459.420289855073" y="434.59821428571428"/>
+            <point key="canvasLocation" x="5439" y="409"/>
         </scene>
         <!--Create a Post-->
         <scene sceneID="5pt-Zk-Clz">
@@ -183,40 +183,56 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="e1e-zF-PDB">
-                                <rect key="frame" x="100" y="44" width="214" height="469"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="e1e-zF-PDB">
+                                <rect key="frame" x="100" y="54" width="214" height="419"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZz-h1-40A">
-                                        <rect key="frame" x="0.0" y="0.0" width="214" height="204.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="214" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Topic:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="91o-Ad-Kma">
-                                                <rect key="frame" x="0.0" y="0.0" width="46" height="204.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="46" height="50"/>
+                                                <color key="backgroundColor" systemColor="labelColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" systemColor="systemBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JWD-R3-hAf">
-                                                <rect key="frame" x="46" y="0.0" width="168" height="204.5"/>
+                                                <rect key="frame" x="46" y="0.0" width="168" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="SoA-h6-rhc"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="JWD-R3-hAf" firstAttribute="centerX" secondItem="jZz-h1-40A" secondAttribute="centerX" constant="23" id="5Dt-qe-ZOX"/>
+                                            <constraint firstItem="JWD-R3-hAf" firstAttribute="centerY" secondItem="jZz-h1-40A" secondAttribute="centerY" id="OQE-iJ-t6a"/>
+                                            <constraint firstItem="91o-Ad-Kma" firstAttribute="centerY" secondItem="jZz-h1-40A" secondAttribute="centerY" id="WIc-pq-1O3"/>
+                                            <constraint firstItem="91o-Ad-Kma" firstAttribute="centerX" secondItem="jZz-h1-40A" secondAttribute="centerX" constant="-84" id="zXP-CQ-3nv"/>
+                                        </constraints>
                                     </stackView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4yq-44-KAW">
-                                        <rect key="frame" x="0.0" y="214.5" width="214" height="254.5"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="CeE-qt-Lar">
+                                        <rect key="frame" x="0.0" y="85" width="214" height="334"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="CeE-qt-Lar" firstAttribute="centerX" secondItem="e1e-zF-PDB" secondAttribute="centerX" id="lnG-39-8fo"/>
+                                    <constraint firstItem="CeE-qt-Lar" firstAttribute="centerY" secondItem="e1e-zF-PDB" secondAttribute="centerY" constant="42.5" id="ycv-IR-Djq"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="UvZ-kz-wrI"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="labelColor"/>
                         <constraints>
                             <constraint firstItem="e1e-zF-PDB" firstAttribute="leading" secondItem="UvZ-kz-wrI" secondAttribute="leading" constant="100" id="Tcb-iU-jyb"/>
-                            <constraint firstItem="UvZ-kz-wrI" firstAttribute="bottom" secondItem="e1e-zF-PDB" secondAttribute="bottom" constant="300" id="fg2-gi-SA3"/>
+                            <constraint firstItem="e1e-zF-PDB" firstAttribute="top" secondItem="UvZ-kz-wrI" secondAttribute="top" constant="10" id="ZCR-KD-qfj"/>
                             <constraint firstItem="UvZ-kz-wrI" firstAttribute="trailing" secondItem="e1e-zF-PDB" secondAttribute="trailing" constant="100" id="gAs-nJ-eXu"/>
-                            <constraint firstItem="e1e-zF-PDB" firstAttribute="top" secondItem="UvZ-kz-wrI" secondAttribute="top" id="ub3-1h-yJW"/>
+                            <constraint firstItem="UvZ-kz-wrI" firstAttribute="bottom" secondItem="e1e-zF-PDB" secondAttribute="bottom" constant="340" id="qrq-8I-Xpt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create a Post" id="0NH-kJ-mfx">
@@ -227,18 +243,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="postTF" destination="4yq-44-KAW" id="nqG-ac-TDr"/>
+                        <outlet property="postTF" destination="CeE-qt-Lar" id="GvP-lS-knO"/>
                         <outlet property="topicTF" destination="JWD-R3-hAf" id="9qx-la-SPr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L94-NR-aRY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4080" y="874"/>
+            <point key="canvasLocation" x="4079.7101449275365" y="873.88392857142856"/>
         </scene>
         <!--My Postss-->
         <scene sceneID="3uY-0B-TYy">
             <objects>
-                <viewController id="iqY-cg-i6Z" sceneMemberID="viewController">
+                <viewController id="iqY-cg-i6Z" customClass="MyPostsTableVC" customModule="sports_media_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pns-CV-t7m">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -247,7 +263,7 @@
                                 <rect key="frame" x="0.0" y="101" width="414" height="676"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="165" id="AeC-dJ-x1o">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="myPostsTableViewCell" rowHeight="165" id="AeC-dJ-x1o" customClass="myPostsTableViewCell" customModule="sports_media_app" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="165"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AeC-dJ-x1o" id="eod-Wz-e6k">
@@ -300,6 +316,13 @@
                                                 <constraint firstAttribute="bottom" secondItem="ARG-jv-4dD" secondAttribute="bottom" id="xVr-p9-rNI"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLab" destination="FF3-Eb-0xB" id="F02-DF-n8u"/>
+                                            <outlet property="postContent" destination="m8Y-lv-bV7" id="jMH-kZ-XIZ"/>
+                                            <outlet property="profilePic" destination="eTc-6e-sgt" id="xQY-5X-9BN"/>
+                                            <outlet property="topicLab" destination="Uj9-wr-lju" id="T1F-Hh-2ae"/>
+                                            <outlet property="usernameLab" destination="jr6-Nq-SwD" id="tHn-Cr-8jA"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -318,6 +341,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="My Postss" id="KrS-lJ-r76"/>
+                    <connections>
+                        <outlet property="myPostsTableView" destination="fs3-VJ-vRl" id="QVy-wk-M0S"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rci-l3-znQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -392,7 +418,7 @@
                                         <connections>
                                             <outlet property="dateLab" destination="dln-Aj-4ZE" id="0eN-BF-bMA"/>
                                             <outlet property="postContent" destination="SHV-OP-7wO" id="tB4-H2-rq4"/>
-                                            <outlet property="profilePic" destination="DMh-rv-qN5" id="k6K-7y-WeS"/>
+                                            <outlet property="profilePic" destination="DMh-rv-qN5" id="Xzy-sF-AoM"/>
                                             <outlet property="topicLab" destination="xav-GR-WQh" id="v8J-zs-1Co"/>
                                             <outlet property="usernameLab" destination="84P-zm-FQI" id="KPa-lO-VgK"/>
                                         </connections>
@@ -414,6 +440,7 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="All Posts" id="xCp-Zg-f0I"/>
+                    <navigationItem key="navigationItem" id="Pxm-n9-z3n"/>
                     <connections>
                         <outlet property="allPostsTV" destination="m0a-kB-uMF" id="avv-HQ-fZ4"/>
                     </connections>
@@ -587,7 +614,9 @@
             <objects>
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="vgw-gl-fgK" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="6Gn-6z-BT6"/>
+                    <navigationItem key="navigationItem" id="6Gn-6z-BT6">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="sAA-Ia-v8x"/>
+                    </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mIN-nJ-QUq">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -612,6 +641,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CaY-b9-P23">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="btp-9M-1fw"/>
                     </connections>

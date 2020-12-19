@@ -11,6 +11,10 @@ import Firebase
 class AllPostsTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var posts = [User]()
+    var favSport: String? = nil
+    var favTeam: String? = nil
+    var username: String? = nil
+    
     @IBOutlet weak var allPostsTV: UITableView!
     
     
@@ -24,15 +28,13 @@ class AllPostsTableVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllPostsCell")! as! AllPostsCellTableViewCell
         let row  = indexPath.row
-        cell.postContent.text = posts[row].post
-        cell.dateLab.text = posts[row].date
-        cell.usernameLab.text = posts[row].username
-        cell.topicLab.text = posts[row].topic
+        let user = posts[row]
+        cell.update(with: user)
         
         return cell
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    func getPosts() {
         let ref = Database.database().reference()
         ref.child("Feed").observe(.value) { (DataSnapshot) in
             if let data1 = DataSnapshot.value as? [String:Any]{
@@ -40,22 +42,39 @@ class AllPostsTableVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                     let moreData = datas as? [String:Any]
                     for data2 in moreData!.values {
                         let data3 = data2 as? [String:Any]
-                        
-                        
+                        let uid = data3?["uid"]
+                        ref.child("Users").child(uid as! String).observe(.value) { (snapshot) in
+                            let value = snapshot.value as? NSDictionary
+                            if let username1 = value?["username"], let favSport1 = value?["favoriteSport"], let favTeam1 = value?["favTeam"] {
+                                self.username = username1 as? String
+                                self.favTeam = favTeam1 as? String
+                                self.favSport = favSport1 as? String
+                                print(self.favSport as Any)
+                                print(self.favTeam as Any)
+                                print(self.username as Any)
+                            }
+                            else {
+                                print("error assigning username again")
+                            }
+                        }
+                        if let date = data3?["date"] as? String, let topic = data3?["topic"] as? String, let post = data3?["post"] as? String{
+                            let user = User(username: self.username!, favSport: self.favSport!, favTeam: self.favTeam!, post: post, topic: topic, date: date)
+                            self.posts.append(user)
+                        }
+                        else{
+                            print("oh no")
+                        }
                     }
                 }
             }
         }
-        DispatchQueue.main.async(execute: {
-            self.allPostsTV.reloadData()
-        })
-            
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        getPosts()
     }
     
 

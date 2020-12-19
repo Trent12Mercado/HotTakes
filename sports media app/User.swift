@@ -13,13 +13,16 @@ class User {
     var favSport: String
     var favTeam: String
     var profilePic: String? = nil
-    var post: String? = nil
-    var topic: String? = nil
-    var date: String? = nil
-    init(username: String, favSport: String, favTeam: String /*profilePic: String*/) {
+    var post: String
+    var topic: String
+    var date: String
+    init(username: String, favSport: String, favTeam: String, post: String, topic: String, date: String) {
         self.username = username
         self.favSport = favSport
         self.favTeam = favTeam
+        self.post = post
+        self.topic = topic
+        self.date = date
         //self.profilePic = profilePic
     }
     
