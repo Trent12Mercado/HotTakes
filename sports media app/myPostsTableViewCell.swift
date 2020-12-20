@@ -30,5 +30,13 @@ class myPostsTableViewCell: UITableViewCell {
         postContent.text = user.post
         dateLab.text = user.date
         usernameLab.text = user.username
+        let image = URL(string: user.profilePic)
+        URLSession.shared.dataTask(with: image!) { (data, response, error) in
+            if error != nil {
+                print("we got an error")
+                return
+            }
+            self.profilePic.image = UIImage(data: data!)
+        }
     }
 }

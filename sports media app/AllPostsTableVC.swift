@@ -11,9 +11,6 @@ import Firebase
 class AllPostsTableVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var posts = [User]()
-    var favSport: String? = nil
-    var favTeam: String? = nil
-    var username: String? = nil
     
     @IBOutlet weak var allPostsTV: UITableView!
     
@@ -28,9 +25,9 @@ class AllPostsTableVC: UIViewController, UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AllPostsCell")! as! AllPostsCellTableViewCell
         let row  = indexPath.row
+        getPosts()
         let user = posts[row]
         cell.update(with: user)
-        
         return cell
     }
     
@@ -44,38 +41,27 @@ class AllPostsTableVC: UIViewController, UITableViewDelegate, UITableViewDataSou
                         let data3 = data2 as? [String:Any]
                         let uid = data3?["uid"]
                         ref.child("Users").child(uid as! String).observe(.value) { (snapshot) in
-                            let value = snapshot.value as? NSDictionary
-                            if let username1 = value?["username"], let favSport1 = value?["favoriteSport"], let favTeam1 = value?["favTeam"] {
-                                self.username = username1 as? String
-                                self.favTeam = favTeam1 as? String
-                                self.favSport = favSport1 as? String
-                                print(self.favSport as Any)
-                                print(self.favTeam as Any)
-                                print(self.username as Any)
+                            let userInfo = (snapshot.value as? [String:Any])!
+                            if let date = data3?["date"] as? String, let topic = data3?["topic"] as? String, let post = data3?["post"] as? String, let username = userInfo["username"] as? String, let favSport = userInfo["favoriteSport"] as? String, let favTeam = userInfo["favoriteTeam"] as? String, let picString = userInfo["profilePic"] as? String {
+                                let user = User(post: post, topic: topic, date: date, username: username, favSport: favSport, favTeam: favTeam, profilePic: picString)
+                                self.posts.append(user)
                             }
-                            else {
-                                print("error assigning username again")
+                            else{
+                                print("not again")
                             }
-                        }
-                        if let date = data3?["date"] as? String, let topic = data3?["topic"] as? String, let post = data3?["post"] as? String{
-                            let user = User(username: self.username!, favSport: self.favSport!, favTeam: self.favTeam!, post: post, topic: topic, date: date)
-                            self.posts.append(user)
-                        }
-                        else{
-                            print("oh no")
                         }
                     }
                 }
             }
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        getPosts()
     }
+    
     
 
     /*

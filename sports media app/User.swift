@@ -12,19 +12,25 @@ class User {
     var username: String
     var favSport: String
     var favTeam: String
-    var profilePic: String? = nil
+    var profilePic: String
     var post: String
     var topic: String
     var date: String
-    init(username: String, favSport: String, favTeam: String, post: String, topic: String, date: String) {
-        self.username = username
-        self.favSport = favSport
-        self.favTeam = favTeam
+    
+    init(post: String, topic: String, date: String, username: String, favSport: String, favTeam: String, profilePic: String) {
         self.post = post
         self.topic = topic
         self.date = date
-        //self.profilePic = profilePic
+        self.username = username
+        self.favTeam = favTeam
+        self.favSport = favSport
+        self.profilePic = profilePic
     }
+    
+    
+    
+    
+    
     
     
     

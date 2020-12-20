@@ -8,7 +8,7 @@
 import UIKit
 import Firebase
 
-class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     
     @IBOutlet weak var profilePic: UIImageView!
@@ -18,28 +18,27 @@ class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavi
     @IBOutlet weak var favTeamTF: UITextField!
     @IBOutlet weak var faveSportTF: UITextField!
     @IBAction func signUpPressed(_ sender: UIButton) {
-        if let email = emailTF.text, let password = passwordTF.text, let username = userNameTF.text, let favTeam = favTeamTF.text, let favSport = faveSportTF.text, let picture = profilePic.image {
-            print("we got here baby")
-            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-                if error == nil {
-                    print("now we are here")
-                    Database.database().reference().child("Users").child((user?.user.uid)!).setValue(["username": username, "favoriteSport": favSport, "favoriteTeam": favTeam])
-                }
-                else {
-                    print("we got an error")
+        let imageUid = NSUUID().uuidString
+        let storageRef = Storage.storage().reference().child("\(imageUid).jpeg")
+        if let uploadData = profilePic.image?.jpegData(compressionQuality: 0.5) {
+            storageRef.putData(uploadData, metadata: nil) { (metadata, error) in
+                if error != nil {
                     print(error as Any)
-                    let alert = UIAlertController(title:"Invalid input", message: "Fill in all of the required areas please", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true)
+                    return
                 }
+                storageRef.downloadURL(completion: { (url: URL?, error: Error?) in
+                    if let error = error {
+                        print(error)
+                    }
+                    else {
+                        let picUrl = url?.absoluteString
+                        self.registerUser(picture: picUrl)
+                    }
+                })
             }
         }
-        else {
-            let alert = UIAlertController(title:"Invalid input", message: "Fill in all of the required areas please", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }
     }
+
     @IBAction func setProfilePicPressed(_ sender: UIButton) {
         let imagePicker = UIImagePickerController()
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
@@ -52,6 +51,30 @@ class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavi
         present(imagePicker, animated: true, completion: nil)
         
     }
+    
+    
+    func registerUser(picture: String?) {
+        if let email = emailTF.text, let password = passwordTF.text, let username = userNameTF.text, let favTeam = favTeamTF.text, let favSport = faveSportTF.text, let picture = picture {
+            Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
+                    if error == nil {
+                        Database.database().reference().child("Users").child((user?.user.uid)!).setValue(["username": username, "favoriteSport": favSport, "favoriteTeam": favTeam,"pictureURL": picture])
+                    }
+                else {
+                    print(error as Any)
+                    let alert = UIAlertController(title:"Invalid input", message: "Fill in all of the required areas please", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+            }
+        }
+        else {
+            let alert = UIAlertController(title:"Invalid input", message: "Fill in all of the required areas please", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+    }
+    
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         
@@ -59,6 +82,7 @@ class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavi
             profilePic.image = image
         }
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +92,18 @@ class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavi
         view.addGestureRecognizer(tapGesture)
     }
     
-
+    func photoToURL(profilePic: UIImage) -> URL? {
+        if profilePic.jpegData(compressionQuality: 0.5) != nil {
+            do {
+                let filename = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+                return filename
+            }
+            catch let error {
+                print(error)
+            }
+        }
+        return nil
+     }
     /*
     // MARK: - Navigation
 
@@ -78,6 +113,10 @@ class CreateAccountVC: UIViewController, UIImagePickerControllerDelegate, UINavi
         // Pass the selected object to the new view controller.
     }
     */
+        
+    @IBAction func unwindToLogInVC(segue: UIStoryboardSegue) {
+        
+    }
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }

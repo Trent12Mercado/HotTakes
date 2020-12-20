@@ -28,11 +28,19 @@ class AllPostsCellTableViewCell: UITableViewCell {
     
     func update(with user: User) {
         print(user.date)
-        print("we here")
         topicLab.text = user.topic
         postContent.text = user.post
         dateLab.text = user.date
         usernameLab.text = user.username
+        if let image = URL(string: user.profilePic) {
+            URLSession.shared.dataTask(with: image) { (data, response, error) in
+                if error != nil {
+                    print("we got an error")
+                    return
+                }
+                self.profilePic.image = UIImage(data: data!)
+            }
+        }
     }
 
 }

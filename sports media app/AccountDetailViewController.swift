@@ -10,7 +10,6 @@ import Firebase
 
 class AccountDetailViewController: UIViewController {
     
-    var currUid: String? = nil
     @IBOutlet weak var profilePic: UIImageView!
     @IBOutlet weak var favoriteSportLab: UILabel!
     @IBOutlet weak var favoriteTeamLab: UILabel!
@@ -19,15 +18,27 @@ class AccountDetailViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let currUid = Auth.auth().currentUser?.uid
         Database.database().reference().child("Users").child(currUid!).observeSingleEvent(of: .value, with: { (DataSnapshot) in
             let value = DataSnapshot.value as? NSDictionary
-            self.favoriteTeamLab.text = value?["favoriteTeam"] as? String
-            self.favoriteSportLab.text = value?["favoriteSport"] as? String
-            self.usernameLab.text = value?["username"] as? String
+            print(value as Any)
+            if let username = value?["username"] as? String, let favSport = value?["favoriteSport"] as? String, let favTeam = value?["favoriteTeam"] as? String, let picString = value?["profilePic"] as? String {
+                self.favoriteTeamLab.text = favTeam
+                self.favoriteSportLab.text = favSport
+                self.usernameLab.text = username
+                let url = URL(string: picString)
+                let task = URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
+                    DispatchQueue.main.async {
+                        self.profilePic.image = UIImage(data: data!)
+                    }
+                })
+                task.resume()
+            }
+            else {
+                print("it went wrong")
+            }
         })
-        { (Error) in print(Error.localizedDescription)}
     }
-   
     
     
     /*

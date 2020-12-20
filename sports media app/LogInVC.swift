@@ -45,24 +45,10 @@ class LogInVC: UIViewController {
         passwordTF.enablesReturnKeyAutomatically = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(LogInVC.dismissKeyboard))
         view.addGestureRecognizer(tapGesture)
+        view.backgroundColor = UIColor(patternImage: UIImage(named: "basketball")!)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let identifier = segue.identifier {
-            if identifier == "goToProfile" {
-                if let profileVC = segue.destination as? AccountDetailViewController {
-                    if let currUserID = Auth.auth().currentUser?.uid {
-                        profileVC.currUid = currUserID
-                        print(currUserID)
-                    }
-                    else {
-                        print("something went wrong")
-                        return
-                    }
-                }
-            }
-        }
-    }
+    
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
